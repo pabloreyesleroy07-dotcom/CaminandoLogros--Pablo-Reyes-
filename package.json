@@ -1,0 +1,27 @@
+{
+  "name": "caminandologros--pablo-reyes-",
+  "version": "1.0.0",
+  "description": "Aplicación web orientada a la planificación de runs y seguimiento de logros en videojuegos, permitiendo a los jugadores filtrar retos según las recompensas reales que aportan dentro del juego (objetos, armas, elementos cosméticos) y consultar guías directas sin saturación de contenidos ni vídeos innecesarios.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pabloreyesleroy07-dotcom/CaminandoLogros--Pablo-Reyes-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pabloreyesleroy07-dotcom/CaminandoLogros--Pablo-Reyes-/issues"
+  },
+  "homepage": "https://github.com/pabloreyesleroy07-dotcom/CaminandoLogros--Pablo-Reyes-#readme",
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.15.0",
+    "globals": "^17.14.0"
+  }
+}
