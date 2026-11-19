@@ -62,8 +62,11 @@ Ordenado por prioridad y dividido en tareas pequeñas para probar cada pieza por
 
 ### Mapa de pantallas
 
+**Secciones principales (enlazadas en el menú de navegación):**
 - **Explorar (`index.html`):** vista principal con el buscador y el listado en cuadrícula de los juegos disponibles. Muestra la portada, el título, el total de logros, los logros perdibles y la etiqueta de género de cada juego.
-- **Detalle de juego (`juego.html`):** ficha individual a la que se accede al pulsar un juego desde Explorar. Muestra la portada, el título, el género, la sinopsis, los indicadores de nota, total de logros y duración estimada, los botones de acción (`Crear Run` y `Ver Logros`) y el listado de logros del juego.
-- **Ver logros (`logros.html`):** vista extendida de los logros de un juego concreto con su etiqueta de categoría, la recompensa que desbloquea dentro del juego y los pasos para conseguirlo. (Enlazada para próximos hitos).
-- **Crear Run (`crear-run.html`):** vista con formulario para configurar una nueva run seleccionando el juego, un nombre de partida y los logros objetivo. (Enlazada en el menú para próximos hitos).
-- **Mis Runs (`mis-runs.html`):** vista con el listado de runs guardadas agrupadas por juego y el porcentaje de logros completados en cada una. (Enlazada en el menú para próximos hitos).
+- **Mis Runs (`mis-runs.html`):** vista con el listado de runs guardadas agrupadas por juego y el porcentaje de logros completados en cada una. *(Enlazada en el menú para próximos hitos).*
+- **Crear Run (`crear-run.html`):** vista con formulario para configurar una nueva run seleccionando el juego, un nombre de partida y los logros objetivo. *(Enlazada en el menú para próximos hitos).*
+
+**Vistas de detalle (enlazadas desde cada ficha de juego):**
+- **Detalle de juego (`juego.html?id=...`):** ficha individual a la que se accede al pulsar cualquier tarjeta desde Explorar. Muestra la portada, el título, el género, la sinopsis, los indicadores de nota, total de logros y duración estimada, los botones de acción (`Crear Run` y `Ver Logros`) y el listado de logros asociados al juego.
+- **Ver logros (`logros.html?juegoId=...`):** vista extendida de los logros de un juego concreto con su etiqueta de categoría, la recompensa que desbloquea dentro del juego y los pasos para conseguirlo. *(Enlazada desde la ficha de juego para próximos hitos).*
