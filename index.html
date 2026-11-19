@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CaminandoLogros - Explorar</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="cabecera">
+    <a href="index.html" class="logo">CaminandoLogros</a>
+
+    <nav class="menu">
+      <button class="btn-tema" type="button" aria-label="Cambiar tema">
+        <img src="img/moon.svg" alt="Cambiar tema">
+      </button>
+      <a href="index.html">Explorar</a>
+      <a href="mis-runs.html">Mis Runs</a>
+      <a href="crear-run.html">Crear Run</a>
+    </nav>
+  </header>
+
+  <main class="contenedor">
+    <section class="hero">
+      <h1>Encuentra tus juegos favoritos y prepara tus runs</h1>
+
+      <form class="buscador" id="form-buscador">
+        <div class="campo-busqueda">
+          <img src="img/search.svg" alt="">
+          <input type="search" id="input-busqueda" placeholder="Buscar juego">
+        </div>
+        <button type="submit" class="btn-primario">
+          <img src="img/plus.svg" alt="">
+          <span>Buscar</span>
+        </button>
+      </form>
+    </section>
+
+    <section class="catalogo">
+      <h2>Juegos Populares</h2>
+      <div id="lista-juegos" class="grid-juegos"></div>
+    </section>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
