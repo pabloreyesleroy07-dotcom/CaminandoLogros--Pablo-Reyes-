@@ -1,0 +1,16 @@
+@use "sass:map";
+@use "../settings/breakpoints" as *;
+
+@mixin focus-ring($color: var(--color-primary)) {
+  outline: 3px solid $color;
+  outline-offset: 2px;
+}
+
+@mixin from($bp) {
+  @if not map.has-key($breakpoints, $bp) {
+    @error "El breakpoint `#{$bp}` no existe.";
+  }
+  @media (width >= map.get($breakpoints, $bp)) {
+    @content;
+  }
+}
