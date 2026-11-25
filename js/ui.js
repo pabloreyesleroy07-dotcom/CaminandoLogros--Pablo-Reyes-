@@ -1,3 +1,4 @@
+// genera las tarjetas del catalogo principal en index.html
 export function pintarJuegos(juegos, contenedor) {
   contenedor.innerHTML = '';
 
@@ -5,6 +6,7 @@ export function pintarJuegos(juegos, contenedor) {
     const tarjeta = document.createElement('article');
     tarjeta.className = 'tarjeta-juego';
 
+    // pasa el id del juego por la url para cargarlo en juego.html
     tarjeta.innerHTML = `
       <a href="juego.html?id=${juego.id}" class="enlace-tarjeta">
         <div class="portada-juego" aria-hidden="true"></div>
@@ -18,6 +20,7 @@ export function pintarJuegos(juegos, contenedor) {
   });
 }
 
+// pinta la ficha completa de un juego y su lista de logros asociados
 export function pintarDetalleJuego(juego, logrosJuego, contenedorDetalle, contenedorLogros) {
   if (!juego) {
     contenedorDetalle.innerHTML = `
@@ -84,6 +87,7 @@ export function pintarDetalleJuego(juego, logrosJuego, contenedorDetalle, conten
   });
 }
 
+// dibuja la lista de usuarios guardados con botones para delegacion de eventos
 export function pintarUsuarios(usuarios, contenedor) {
   contenedor.innerHTML = '';
 
@@ -96,6 +100,7 @@ export function pintarUsuarios(usuarios, contenedor) {
     const tarjeta = document.createElement('article');
     tarjeta.className = 'tarjeta-registro';
 
+    // data-accion y data-id permiten detectar que boton se pulsa desde el contenedor
     tarjeta.innerHTML = `
       <div class="info-registro">
         <h3>${usuario.nombreUsuario}</h3>
@@ -116,6 +121,7 @@ export function pintarUsuarios(usuarios, contenedor) {
   });
 }
 
+// dibuja la lista de mensajes de contacto guardados con opciones de editar y borrar
 export function pintarMensajes(mensajes, contenedor) {
   contenedor.innerHTML = '';
 
@@ -128,6 +134,7 @@ export function pintarMensajes(mensajes, contenedor) {
     const tarjeta = document.createElement('article');
     tarjeta.className = 'tarjeta-registro';
 
+    // adapta los valores vacios o booleanos a texto legible para el usuario
     const telefonoTexto = mensaje.telefono ? mensaje.telefono : 'No indicado';
     const llamadaTexto = mensaje.prefieroLlamada ? 'Sí' : 'No';
 

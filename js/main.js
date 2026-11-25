@@ -12,31 +12,37 @@ import {
   validarTelefono
 } from './validacion.js';
 
+// marca el campo como invalido para css y lectores de pantalla y escribe el aviso
 function mostrarError(campo, spanError, mensaje) {
   campo.setAttribute('aria-invalid', 'true');
   spanError.textContent = mensaje;
 }
 
+// quita el estado de error y vacia el texto del aviso
 function limpiarError(campo, spanError) {
   campo.removeAttribute('aria-invalid');
   spanError.textContent = '';
 }
 
+// referencias de las vistas del hito 1
 const listaJuegos = document.getElementById('lista-juegos');
 const detalleJuego = document.getElementById('detalle-juego');
 const listaLogrosJuego = document.getElementById('lista-logros-juego');
 const formBuscador = document.getElementById('form-buscador');
 
+// pinta el catalogo inicial si estamos en index.html
 if (listaJuegos) {
   pintarJuegos(juegos, listaJuegos);
 }
 
+// evita que el buscador recargue la pagina al pulsar enter
 if (formBuscador) {
   formBuscador.addEventListener('submit', (evento) => {
     evento.preventDefault();
   });
 }
 
+// lee el parametro id de la url para cargar la ficha de juego y sus logros
 if (detalleJuego && listaLogrosJuego) {
   const parametros = new URLSearchParams(window.location.search);
   const idJuego = Number(parametros.get('id'));
@@ -46,6 +52,7 @@ if (detalleJuego && listaLogrosJuego) {
   pintarDetalleJuego(juegoSeleccionado, logrosAsociados, detalleJuego, listaLogrosJuego);
 }
 
+// logica del formulario y listado de usuarios (usuarios.html)
 const formRegistro = document.getElementById('form-registro');
 const listaUsuarios = document.getElementById('lista-usuarios');
 
@@ -69,7 +76,9 @@ if (formRegistro && listaUsuarios) {
   const textoBtnGuardar = btnGuardar.querySelector('span');
   const btnCancelar = document.getElementById('btn-cancelar-edicion');
 
+  // guarda el id del usuario en edicion o null si estamos creando uno nuevo
   let idEditando = null;
+  // registra que campos ha tocado ya el usuario para validar al escribir
   const tocados = {};
 
   function comprobarUsuario() {
@@ -106,6 +115,7 @@ if (formRegistro && listaUsuarios) {
 
   function comprobarPassword() {
     let error = null;
+    // al editar un usuario existente la contraseña pasa a ser opcional
     if (idEditando === null && regPassword.required) {
       error = validarObligatorio(regPassword.value);
     }
@@ -180,6 +190,7 @@ if (formRegistro && listaUsuarios) {
     tocados.condiciones = false;
   }
 
+  // devuelve el formulario al estado inicial de alta
   function salirModoEdicion() {
     idEditando = null;
     tituloForm.textContent = 'Registro de usuario';
@@ -190,6 +201,7 @@ if (formRegistro && listaUsuarios) {
     limpiarTodosLosErrores();
   }
 
+  // valida cada campo al perder el foco y mientras se corrige si ya fue tocado
   regUsuario.addEventListener('blur', () => {
     tocados.usuario = true;
     comprobarUsuario();
@@ -218,6 +230,7 @@ if (formRegistro && listaUsuarios) {
     if (tocados.password) {
       comprobarPassword();
     }
+    // revalida repetir contraseña si el usuario cambia la original
     if (tocados.repetir) {
       comprobarRepetir();
     }
@@ -250,6 +263,7 @@ if (formRegistro && listaUsuarios) {
 
   btnCancelar.addEventListener('click', salirModoEdicion);
 
+  // valida todo al enviar y crea o actualiza en localstorage
   formRegistro.addEventListener('submit', (evento) => {
     evento.preventDefault();
 
@@ -267,6 +281,7 @@ if (formRegistro && listaUsuarios) {
     const fechaValida = comprobarFecha();
     const condicionesValidas = comprobarCondiciones();
 
+    // lleva el foco al primer campo con error
     if (!usuarioValido) {
       regUsuario.focus();
       return;
@@ -292,6 +307,7 @@ if (formRegistro && listaUsuarios) {
       return;
     }
 
+    // no guarda la contraseña en localstorage por seguridad
     const datosUsuario = {
       nombreUsuario: regUsuario.value.trim(),
       correo: regCorreo.value.trim(),
@@ -311,6 +327,7 @@ if (formRegistro && listaUsuarios) {
     pintarUsuarios(obtenerTodos('usuarios'), listaUsuarios);
   });
 
+  // delegacion de eventos en la lista para gestionar editar y borrar
   listaUsuarios.addEventListener('click', (evento) => {
     const boton = evento.target;
     if (boton.tagName !== 'BUTTON') {
@@ -339,6 +356,7 @@ if (formRegistro && listaUsuarios) {
       limpiarTodosLosErrores();
       limpiarTocados();
 
+      // rellena el formulario con los datos actuales del usuario
       regUsuario.value = usuario.nombreUsuario;
       regCorreo.value = usuario.correo;
       regFecha.value = usuario.fechaNacimiento;
@@ -354,9 +372,11 @@ if (formRegistro && listaUsuarios) {
     }
   });
 
+  // carga inicial de usuarios al abrir la pagina
   pintarUsuarios(obtenerTodos('usuarios'), listaUsuarios);
 }
 
+// logica del formulario de contacto y mensajes enviados (contacto.html)
 const formContacto = document.getElementById('form-contacto');
 const listaMensajes = document.getElementById('lista-mensajes');
 
@@ -383,6 +403,7 @@ if (formContacto && listaMensajes) {
   let idEditando = null;
   const tocados = {};
 
+  // autorrellena nombre y correo si existen de un envio anterior en localstorage
   const nombreGuardado = localStorage.getItem('contacto_nombre');
   const correoGuardado = localStorage.getItem('contacto_correo');
   if (nombreGuardado) {
@@ -392,6 +413,7 @@ if (formContacto && listaMensajes) {
     conCorreo.value = correoGuardado;
   }
 
+  // actualiza en tiempo real los caracteres escritos frente al maximo
   function actualizarContador() {
     const escritos = conMensaje.value.length;
     const maximo = conMensaje.maxLength;
@@ -433,6 +455,7 @@ if (formContacto && listaMensajes) {
     return true;
   }
 
+  // pasa el estado de la casilla de llamada para aplicar la regla condicional
   function comprobarTelefono() {
     const error = validarTelefono(conTelefono.value, conLlamada.checked);
     if (error) {
@@ -530,6 +553,7 @@ if (formContacto && listaMensajes) {
     }
   });
 
+  // al marcar o desmarcar llamada cambia la obligatoriedad del telefono y lo revalida
   conLlamada.addEventListener('change', () => {
     conTelefono.required = conLlamada.checked;
     tocados.telefono = true;
@@ -603,6 +627,7 @@ if (formContacto && listaMensajes) {
       mensaje: conMensaje.value.trim()
     };
 
+    // guarda nombre y correo para recordarlos la proxima vez
     localStorage.setItem('contacto_nombre', datosMensaje.nombre);
     localStorage.setItem('contacto_correo', datosMensaje.correo);
 
@@ -620,6 +645,7 @@ if (formContacto && listaMensajes) {
     pintarMensajes(obtenerTodos('mensajes'), listaMensajes);
   });
 
+  // delegacion de eventos para editar o borrar mensajes enviados
   listaMensajes.addEventListener('click', (evento) => {
     const boton = evento.target;
     if (boton.tagName !== 'BUTTON') {
@@ -665,5 +691,6 @@ if (formContacto && listaMensajes) {
     }
   });
 
+  // carga inicial de mensajes al abrir la pagina
   pintarMensajes(obtenerTodos('mensajes'), listaMensajes);
 }
