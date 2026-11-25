@@ -1,4 +1,6 @@
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -11,14 +13,48 @@ body {
   line-height: var(--line-height-body);
 }
 
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 .cabecera {
   background-color: var(--color-surface-raised);
-  height: 70px;
-  padding: 0 var(--space-48);
+  min-height: 4.375rem;
+  padding: var(--space-12) var(--space-48);
   border-bottom: 1px solid var(--color-primary);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: var(--space-16);
 }
 
 .logo {
@@ -30,6 +66,7 @@ body {
 
 .menu {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--space-24);
 }
@@ -38,8 +75,11 @@ body {
   background: none;
   border: none;
   cursor: pointer;
-  display: flex;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
 }
 
 .btn-tema img {
@@ -52,15 +92,21 @@ body {
   color: var(--color-on-surface);
   font-size: var(--font-size-label);
   font-weight: 700;
+  padding: var(--space-8) var(--space-4);
 }
 
-.menu a:hover {
+.menu a:hover,
+.menu a[aria-current="page"] {
   color: var(--color-primary);
+}
+
+.menu a[aria-current="page"] {
+  border-bottom: 2px solid var(--color-primary);
 }
 
 .contenedor {
   max-width: 1280px;
-  margin: 0 auto;
+  margin-inline: auto;
   padding: var(--space-48) var(--space-32);
 }
 
@@ -91,7 +137,7 @@ body {
   border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 0 var(--space-12);
-  height: 44px;
+  min-height: 2.75rem;
   width: 240px;
 }
 
@@ -102,10 +148,8 @@ body {
 
 .campo-busqueda input {
   border: none;
-  outline: none;
   background: transparent;
   color: var(--color-on-surface);
-  font-family: inherit;
   font-size: var(--font-size-body);
   width: 100%;
 }
@@ -116,10 +160,9 @@ body {
   align-items: center;
   justify-content: center;
   gap: var(--space-8);
-  height: 44px;
-  padding: 0 var(--space-24);
+  min-height: 2.75rem;
+  padding: var(--space-8) var(--space-24);
   border-radius: 8px;
-  font-family: inherit;
   font-size: var(--font-size-label);
   font-weight: 700;
   text-decoration: none;
@@ -245,7 +288,7 @@ body {
 .sinopsis-detalle {
   font-size: var(--font-size-body);
   margin-bottom: var(--space-24);
-  max-width: 68ch;
+  max-width: 65ch;
 }
 
 .pildoras-detalle {
@@ -324,6 +367,151 @@ body {
   gap: var(--space-16);
 }
 
+/* Formularios y listados */
+.btn-secundario[hidden],
+[hidden] {
+  display: none;
+}
+
+.bloque-formulario {
+  background-color: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: var(--space-32);
+  max-width: 640px;
+  margin: 0 auto var(--space-48);
+}
+
+.bloque-formulario h1 {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h1);
+  margin-bottom: var(--space-24);
+}
+
+.formulario-h2 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.campo-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.campo-formulario label {
+  font-size: var(--font-size-label);
+  font-weight: 700;
+}
+
+.campo-formulario input[type="text"],
+.campo-formulario input[type="email"],
+.campo-formulario input[type="password"],
+.campo-formulario input[type="date"],
+.campo-formulario input[type="tel"],
+.campo-formulario select,
+.campo-formulario textarea {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: var(--space-12);
+  font-size: var(--font-size-body);
+  width: 100%;
+}
+
+.campo-formulario input[aria-invalid="true"],
+.campo-formulario select[aria-invalid="true"],
+.campo-formulario textarea[aria-invalid="true"] {
+  border-color: var(--color-error);
+  border-width: 2px;
+}
+
+.campo-checkbox label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  min-height: 2.75rem;
+  cursor: pointer;
+}
+
+.campo-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--color-primary);
+}
+
+.mensaje-error {
+  color: var(--color-error);
+  font-size: var(--font-size-caption);
+  font-weight: 700;
+  min-height: 1.25rem;
+}
+
+.contador-caracteres {
+  color: var(--color-on-surface-variant);
+  font-size: var(--font-size-caption);
+  align-self: flex-end;
+}
+
+.acciones-formulario {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+  margin-top: var(--space-8);
+}
+
+.bloque-listado {
+  max-width: 840px;
+  margin-inline: auto;
+}
+
+.bloque-listado h2 {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  margin-bottom: var(--space-24);
+}
+
+.lista-registros {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.tarjeta-registro {
+  background-color: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: var(--space-24);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-16);
+}
+
+.info-registro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.info-registro h3 {
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+}
+
+.info-registro p {
+  font-size: var(--font-size-label);
+  color: var(--color-on-surface-variant);
+}
+
+.acciones-registro {
+  display: flex;
+  gap: var(--space-8);
+  flex-shrink: 0;
+}
+
 @media (max-width: 1024px) {
   .grid-juegos {
     grid-template-columns: repeat(2, 1fr);
@@ -336,10 +524,19 @@ body {
 
 @media (max-width: 600px) {
   .cabecera {
-    padding: 0 var(--space-16);
+    padding: var(--space-12) var(--space-16);
   }
 
   .grid-juegos {
     grid-template-columns: 1fr;
+  }
+
+  .bloque-formulario {
+    padding: var(--space-24) var(--space-16);
+  }
+
+  .tarjeta-registro {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

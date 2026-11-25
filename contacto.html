@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CaminandoLogros - Contacto</title>
+  <meta name="color-scheme" content="light dark">
+  <title>Contacto · CaminandoLogros</title>
+  <meta name="description" content="Formulario de contacto para reportar errores en logros o proponer nuevos juegos en CaminandoLogros.">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -12,21 +14,21 @@
   <header class="cabecera">
     <a href="index.html" class="logo">CaminandoLogros</a>
 
-    <nav class="menu">
+    <nav class="menu" aria-label="Principal">
       <button class="btn-tema" type="button" aria-label="Cambiar tema">
-        <img src="img/moon.svg" alt="Cambiar tema">
+        <img src="img/moon.svg" alt="" width="20" height="20" aria-hidden="true">
       </button>
       <a href="index.html">Explorar</a>
       <a href="mis-runs.html">Mis Runs</a>
       <a href="crear-run.html">Crear Run</a>
       <a href="usuarios.html">Usuarios</a>
-      <a href="contacto.html">Contacto</a>
+      <a href="contacto.html" aria-current="page">Contacto</a>
     </nav>
   </header>
 
   <main class="contenedor">
     <section class="bloque-formulario">
-      <h1>Contacto</h1>
+      <h1 id="titulo-form-contacto">Contacto</h1>
 
       <form id="form-contacto" class="formulario-h2" novalidate>
         <div class="campo-formulario">
@@ -35,6 +37,7 @@
             type="text"
             id="con-nombre"
             name="nombre"
+            autocomplete="name"
             required
             minlength="2"
             maxlength="50"
@@ -49,6 +52,7 @@
             type="email"
             id="con-correo"
             name="correo"
+            autocomplete="email"
             required
             aria-describedby="error-con-correo"
           >
@@ -61,6 +65,7 @@
             type="tel"
             id="con-telefono"
             name="telefono"
+            autocomplete="tel"
             aria-describedby="error-con-telefono"
           >
           <span id="error-con-telefono" class="mensaje-error" aria-live="polite"></span>
@@ -110,8 +115,11 @@
         </div>
 
         <div class="acciones-formulario">
-          <button type="submit" class="btn-primario">
+          <button type="submit" id="btn-enviar-contacto" class="btn-primario">
             <span>Enviar mensaje</span>
+          </button>
+          <button type="button" id="btn-cancelar-contacto" class="btn-secundario" hidden>
+            <span>Cancelar edición</span>
           </button>
         </div>
       </form>

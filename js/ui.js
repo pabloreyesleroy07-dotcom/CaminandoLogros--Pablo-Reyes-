@@ -139,6 +139,9 @@ export function pintarMensajes(mensajes, contenedor) {
         <p>${mensaje.mensaje}</p>
       </div>
       <div class="acciones-registro">
+        <button type="button" class="btn-secundario" data-accion="editar" data-id="${mensaje.id}">
+          Editar
+        </button>
         <button type="button" class="btn-secundario" data-accion="borrar" data-id="${mensaje.id}">
           Borrar
         </button>

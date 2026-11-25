@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CaminandoLogros - Usuarios</title>
+  <meta name="color-scheme" content="light dark">
+  <title>Usuarios · CaminandoLogros</title>
+  <meta name="description" content="Registro y gestión de cuentas de usuario en CaminandoLogros.">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -12,14 +14,14 @@
   <header class="cabecera">
     <a href="index.html" class="logo">CaminandoLogros</a>
 
-    <nav class="menu">
+    <nav class="menu" aria-label="Principal">
       <button class="btn-tema" type="button" aria-label="Cambiar tema">
-        <img src="img/moon.svg" alt="Cambiar tema">
+        <img src="img/moon.svg" alt="" width="20" height="20" aria-hidden="true">
       </button>
       <a href="index.html">Explorar</a>
       <a href="mis-runs.html">Mis Runs</a>
       <a href="crear-run.html">Crear Run</a>
-      <a href="usuarios.html">Usuarios</a>
+      <a href="usuarios.html" aria-current="page">Usuarios</a>
       <a href="contacto.html">Contacto</a>
     </nav>
   </header>
@@ -35,6 +37,7 @@
             type="text"
             id="reg-usuario"
             name="nombreUsuario"
+            autocomplete="username"
             required
             minlength="3"
             maxlength="20"
@@ -49,6 +52,7 @@
             type="email"
             id="reg-correo"
             name="correo"
+            autocomplete="email"
             required
             aria-describedby="error-reg-correo"
           >
@@ -61,6 +65,7 @@
             type="password"
             id="reg-password"
             name="password"
+            autocomplete="new-password"
             required
             minlength="8"
             aria-describedby="error-reg-password"
@@ -74,6 +79,7 @@
             type="password"
             id="reg-repetir"
             name="repetirPassword"
+            autocomplete="new-password"
             required
             minlength="8"
             aria-describedby="error-reg-repetir"
@@ -87,6 +93,7 @@
             type="date"
             id="reg-fecha"
             name="fechaNacimiento"
+            autocomplete="bday"
             required
             aria-describedby="error-reg-fecha"
           >
