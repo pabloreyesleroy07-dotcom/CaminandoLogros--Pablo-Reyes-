@@ -83,3 +83,68 @@ export function pintarDetalleJuego(juego, logrosJuego, contenedorDetalle, conten
     contenedorLogros.appendChild(item);
   });
 }
+
+export function pintarUsuarios(usuarios, contenedor) {
+  contenedor.innerHTML = '';
+
+  if (usuarios.length === 0) {
+    contenedor.innerHTML = '<p>No hay usuarios registrados todavía.</p>';
+    return;
+  }
+
+  usuarios.forEach((usuario) => {
+    const tarjeta = document.createElement('article');
+    tarjeta.className = 'tarjeta-registro';
+
+    tarjeta.innerHTML = `
+      <div class="info-registro">
+        <h3>${usuario.nombreUsuario}</h3>
+        <p><strong>Correo:</strong> ${usuario.correo}</p>
+        <p><strong>Fecha de nacimiento:</strong> ${usuario.fechaNacimiento}</p>
+      </div>
+      <div class="acciones-registro">
+        <button type="button" class="btn-secundario" data-accion="editar" data-id="${usuario.id}">
+          Editar
+        </button>
+        <button type="button" class="btn-secundario" data-accion="borrar" data-id="${usuario.id}">
+          Borrar
+        </button>
+      </div>
+    `;
+
+    contenedor.appendChild(tarjeta);
+  });
+}
+
+export function pintarMensajes(mensajes, contenedor) {
+  contenedor.innerHTML = '';
+
+  if (mensajes.length === 0) {
+    contenedor.innerHTML = '<p>No hay mensajes enviados todavía.</p>';
+    return;
+  }
+
+  mensajes.forEach((mensaje) => {
+    const tarjeta = document.createElement('article');
+    tarjeta.className = 'tarjeta-registro';
+
+    const telefonoTexto = mensaje.telefono ? mensaje.telefono : 'No indicado';
+    const llamadaTexto = mensaje.prefieroLlamada ? 'Sí' : 'No';
+
+    tarjeta.innerHTML = `
+      <div class="info-registro">
+        <h3>${mensaje.nombre} · ${mensaje.motivo}</h3>
+        <p><strong>Correo:</strong> ${mensaje.correo}</p>
+        <p><strong>Teléfono:</strong> ${telefonoTexto} (Prefiere llamada: ${llamadaTexto})</p>
+        <p>${mensaje.mensaje}</p>
+      </div>
+      <div class="acciones-registro">
+        <button type="button" class="btn-secundario" data-accion="borrar" data-id="${mensaje.id}">
+          Borrar
+        </button>
+      </div>
+    `;
+
+    contenedor.appendChild(tarjeta);
+  });
+}

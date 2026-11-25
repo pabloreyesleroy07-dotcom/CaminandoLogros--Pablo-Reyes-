@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CaminandoLogros - Contacto</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="cabecera">
+    <a href="index.html" class="logo">CaminandoLogros</a>
+
+    <nav class="menu">
+      <button class="btn-tema" type="button" aria-label="Cambiar tema">
+        <img src="img/moon.svg" alt="Cambiar tema">
+      </button>
+      <a href="index.html">Explorar</a>
+      <a href="mis-runs.html">Mis Runs</a>
+      <a href="crear-run.html">Crear Run</a>
+      <a href="usuarios.html">Usuarios</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </header>
+
+  <main class="contenedor">
+    <section class="bloque-formulario">
+      <h1>Contacto</h1>
+
+      <form id="form-contacto" class="formulario-h2" novalidate>
+        <div class="campo-formulario">
+          <label for="con-nombre">Nombre</label>
+          <input
+            type="text"
+            id="con-nombre"
+            name="nombre"
+            required
+            minlength="2"
+            maxlength="50"
+            aria-describedby="error-con-nombre"
+          >
+          <span id="error-con-nombre" class="mensaje-error" aria-live="polite"></span>
+        </div>
+
+        <div class="campo-formulario">
+          <label for="con-correo">Correo electrónico</label>
+          <input
+            type="email"
+            id="con-correo"
+            name="correo"
+            required
+            aria-describedby="error-con-correo"
+          >
+          <span id="error-con-correo" class="mensaje-error" aria-live="polite"></span>
+        </div>
+
+        <div class="campo-formulario">
+          <label for="con-telefono">Teléfono (opcional)</label>
+          <input
+            type="tel"
+            id="con-telefono"
+            name="telefono"
+            aria-describedby="error-con-telefono"
+          >
+          <span id="error-con-telefono" class="mensaje-error" aria-live="polite"></span>
+        </div>
+
+        <div class="campo-formulario campo-checkbox">
+          <label for="con-llamar">
+            <input
+              type="checkbox"
+              id="con-llamar"
+              name="prefieroLlamada"
+            >
+            Prefiero que me llaméis
+          </label>
+        </div>
+
+        <div class="campo-formulario">
+          <label for="con-motivo">Motivo</label>
+          <select
+            id="con-motivo"
+            name="motivo"
+            required
+            aria-describedby="error-con-motivo"
+          >
+            <option value="">Selecciona un motivo</option>
+            <option value="Reportar un logro con fallos">Reportar un logro con fallos</option>
+            <option value="Proponer nuevo juego">Proponer nuevo juego</option>
+            <option value="Sugerir mejora en una guía">Sugerir mejora en una guía</option>
+            <option value="Incidencia con mi cuenta">Incidencia con mi cuenta</option>
+          </select>
+          <span id="error-con-motivo" class="mensaje-error" aria-live="polite"></span>
+        </div>
+
+        <div class="campo-formulario">
+          <label for="con-mensaje">Mensaje</label>
+          <textarea
+            id="con-mensaje"
+            name="mensaje"
+            rows="4"
+            required
+            minlength="15"
+            maxlength="300"
+            aria-describedby="error-con-mensaje contador-mensaje"
+          ></textarea>
+          <small id="contador-mensaje" class="contador-caracteres">0 / 300 caracteres</small>
+          <span id="error-con-mensaje" class="mensaje-error" aria-live="polite"></span>
+        </div>
+
+        <div class="acciones-formulario">
+          <button type="submit" class="btn-primario">
+            <span>Enviar mensaje</span>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section class="bloque-listado">
+      <h2>Mensajes enviados</h2>
+      <div id="lista-mensajes" class="lista-registros"></div>
+    </section>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
